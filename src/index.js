@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
+const blogRoute = require('./routes/blog')
 require('dotenv').config()
 
 const app = express()
@@ -17,9 +18,9 @@ app.set('views', viewsPath)
 
 hbs.registerPartials(partialPath)
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+app.use(express.json())
+
+app.use(blogRoute)
 
 app.listen(PORT, () => {
     console.log(`server upon port ${PORT}`)
