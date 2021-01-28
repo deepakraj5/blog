@@ -14,6 +14,7 @@ signupBtn.addEventListener('click', async (e) => {
     }
 
     let response = await postMethod('http://localhost:3000/api/v1/signup', signupDetails)
+    
     console.log(response)
 })
 
