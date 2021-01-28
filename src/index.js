@@ -2,7 +2,9 @@ const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
 const blogRoute = require('./routes/blog')
+const userRoute = require('./routes/user')
 require('dotenv').config()
+require('./db/mongoose')
 
 const app = express()
 
@@ -21,6 +23,7 @@ hbs.registerPartials(partialPath)
 app.use(express.json())
 
 app.use(blogRoute)
+app.use('/api/v1', userRoute)
 
 app.listen(PORT, () => {
     console.log(`server upon port ${PORT}`)

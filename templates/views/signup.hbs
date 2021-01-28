@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Signup</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="blog-container">
+
+            {{>header}}
+
+            <div class="signup-container">
+
+                <div class="form-container">
+                    <form id="signup-form">
+                        <table cellSpacing="20">
+                            <tr>
+                                <td>Name</td>
+                                <td>
+                                    <input type="text" placeholder="Name" name="name" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <input type="email" placeholder="Email" name="email" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>
+                                    <input type="number" placeholder="Phone" name="phone" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td>
+                                    <input type="password" placeholder="Password" name="password" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="signup-btn">Signup</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/script.js"></script>
+
+</body>
+</html>
