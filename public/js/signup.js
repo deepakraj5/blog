@@ -17,18 +17,28 @@ signupBtn.addEventListener('click', async (e) => {
 
     if (signupForm.elements[0].value !== '') {
         nameVal = true
+        signupForm.elements[0].classList.remove('wrong-input')
+    } else {
+        signupForm.elements[0].classList.add('wrong-input')
     }
     if (signupForm.elements[1].value !== '') {
         emailVal = true
+        signupForm.elements[1].classList.remove('wrong-input')
+    } else {
+        signupForm.elements[1].classList.add('wrong-input')
     }
     if (signupForm.elements[2].value !== '') {
         phoneVal = true
+        signupForm.elements[2].classList.remove('wrong-input')
+    } else {
+        signupForm.elements[2].classList.add('wrong-input')
     }
     if (signupForm.elements[3].value !== '') {
         passwordVal = true
+        signupForm.elements[3].classList.remove('wrong-input')
+    } else {
+        signupForm.elements[3].classList.add('wrong-input')
     }
-
-    console.log(nameVal, emailVal, phoneVal, passwordVal)
 
     if (nameVal && emailVal && phoneVal && passwordVal) {
         for (let i = 0; i < 4; i ++) {

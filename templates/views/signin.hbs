@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Signin</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="blog-container">
+
+            {{>header}}
+
+            <div class="signup-container">
+
+                <div class="form-container">
+                    <form id="signin-form">
+                        <table cellSpacing="20">
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <input type="email" placeholder="Email" name="email" required />
+                                    <p class="wrong-email"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td>
+                                    <input type="password" placeholder="Password" name="password" required />
+                                    <p class="wrong-password"></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button class="signin-btn">Signin</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="/js/signin.js"></script>
+
+</body>
+</html>

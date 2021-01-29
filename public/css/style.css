@@ -78,7 +78,24 @@ nav li a {
     padding: 3px;
 }
 
+.wrong-input {
+    border: solid rgb(216, 12, 12);
+}
+
 .signup-btn {
+    padding: 7px;
+    background-color: rgb(29, 7, 92);
+    width: 170px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    box-shadow: 10px 10px 5px grey;
+}
+
+.signin-btn {
     padding: 7px;
     background-color: rgb(29, 7, 92);
     width: 170px;

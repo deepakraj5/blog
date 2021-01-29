@@ -8,4 +8,8 @@ route.get('/signup', (req, res) => {
     res.render('signup')
 })
 
+route.get('/signin', (req, res) => {
+    res.render('signin')
+})
+
 module.exports = route
