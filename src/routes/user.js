@@ -2,6 +2,7 @@ const route = require('express').Router()
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth')
 
 route.post('/signup', async (req, res) => {
     try {
@@ -34,6 +35,11 @@ route.post('/signin', async (req, res) => {
     } catch (e) {
         res.status(500).send({ error: 'wrong credentials' })
     }
+})
+
+route.get('/profile', auth, async (req, res) => {
+    const profile = req.user
+    res.send({ profile })
 })
 
 module.exports = route

@@ -1,3 +1,9 @@
+let profile = JSON.parse(localStorage.getItem('profile'))
+
+if (profile) {
+    window.location.replace('http://localhost:3000')
+}
+ 
 let signupBtn = document.querySelector('.signup-btn')
 let signupForm = document.getElementById('signup-form')
 

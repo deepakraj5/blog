@@ -1,3 +1,10 @@
+let profile = JSON.parse(localStorage.getItem('profile'))
+
+if (profile) {
+    console.log(profile)
+    window.location.replace('http://localhost:3000')
+}
+
 let signinForm = document.getElementById('signin-form')
 let signinBtn = document.querySelector('.signin-btn')
 let wrongEmail = document.querySelector('.wrong-email')
@@ -27,45 +34,68 @@ signinBtn.addEventListener('click', async (e) => {
         signinForm.elements[1].classList.add('wrong-input')
     }
 
-    if (emailVal && passwordVal) {
+    try {
+        if (emailVal && passwordVal) {
         
-        for (let i = 0; i < 2; i ++) {
-            let key = signinForm.elements[i].name
-            let value = signinForm.elements[i].value
-            signinDetails[key] = value
-        }
+            for (let i = 0; i < 2; i ++) {
+                let key = signinForm.elements[i].name
+                let value = signinForm.elements[i].value
+                signinDetails[key] = value
+            }
+    
+            let response = await postMethod('http://localhost:3000/api/v1/signin', signinDetails)
+    
+            if (response.token) {
+    
+                localStorage.setItem('jwt_token', response.token)
+                wrongEmail.innerHTML = ''
+                wrongPassword.innerHTML = ''
+    
+                let profile = await profileMethod('http://localhost:3000/api/v1/profile', response.token)
+                
+                localStorage.setItem('profile', JSON.stringify(profile.profile))
 
-        let response = await postMethod('http://localhost:3000/api/v1/signin', signinDetails)
-
-        if (response.token) {
-
-            localStorage.setItem('jwt_token', response.token)
-
-            console.log(response.token)
-            wrongEmail.innerHTML = ''
-            wrongPassword.innerHTML = ''
+                window.location.replace('http://localhost:3000')
+    
+            } else {
+                signinForm.elements[0].classList.add('wrong-input')
+                signinForm.elements[1].classList.add('wrong-input')
+                wrongEmail.innerHTML = 'wrong credentials'
+                wrongPassword.innerHTML = 'wrong credentials'
+                signinBtn.disabled = false
+                signinBtn.innerHTML = 'Signin'
+            }
+    
         } else {
-            signinForm.elements[0].classList.add('wrong-input')
-            signinForm.elements[1].classList.add('wrong-input')
-            wrongEmail.innerHTML = 'wrong credentials'
-            wrongPassword.innerHTML = 'wrong credentials'
             signinBtn.disabled = false
             signinBtn.innerHTML = 'Signin'
         }
-
-    } else {
-        signinBtn.disabled = false
-        signinBtn.innerHTML = 'Signin'
+    } catch (e) {
+        
     }
 })
 
-let postMethod = async (url, data) => {
+let postMethod = async (url = '', data = {}) => {
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+    
+        return response.json()
+    } catch (e) {
+        
+    }
+}
+
+let profileMethod = async (url, token) => {
     let response = await fetch(url, {
-        method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+            'Authorization': 'Bearer ' + token
+        }
     })
 
     return response.json()
