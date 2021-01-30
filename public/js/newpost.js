@@ -56,13 +56,47 @@ if (!profile) {
             postBlogBtn.addEventListener('click', async (e) => {
                 e.preventDefault()
 
-                console.log(blogForm.elements[0].value)
-                console.log(blogForm.elements[1].value)
-                console.log(blogForm.elements[2].value)
-                console.log(blogForm.elements[3].value)
+                postBlogBtn.innerHTML = 'Posting the Blog...'
+                postBlogBtn.disabled = true
+
+                let jwt_token = localStorage.getItem('jwt_token')
+
+                let title = blogForm.elements[0].value
+                let subject = blogForm.elements[1].value
+                let body = blogForm.elements[2].value
+                let youtubeLink = blogForm.elements[3].value
 
                 let blogImage = document.getElementById('blog-image')
-                console.log(blogImage.files[0])
+                let image = blogImage.files[0]
+
+                let formData = new FormData()
+
+                formData.append('image', image)
+                formData.append('title', title)
+                formData.append('subject', subject)
+                formData.append('body', body)
+                formData.append('youtubeLink', youtubeLink)
+
+                let newPostMethod = async (url, token, data) => {
+                    let response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        body: data
+                    })
+                
+                    return response.json()
+                }
+
+                let response = await newPostMethod('http://localhost:3000/api/v1/newpost', jwt_token, formData)
+
+                if (response.message === 'new post added') {
+                    window.location.replace('http://localhost:3000')
+                } else {
+                    postBlogBtn.innerHTML = 'Post the Blog'
+                    postBlogBtn.disabled = false
+                }
 
             })
 

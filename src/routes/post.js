@@ -1,11 +1,15 @@
 const route = require('express').Router()
 const Post = require('../models/post')
 const auth = require('../middleware/auth')
+const multer = require('multer')
 
-route.post('/newpost', auth, async (req, res) => {
+const upload = multer({})
+
+route.post('/newpost', auth, upload.single('image'), async (req, res) => {
     try {
         const post = new Post({
             ...req.body,
+            images: req.file.buffer,
             owner: req.user._id
         })
         await post.save()
