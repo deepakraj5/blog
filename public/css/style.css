@@ -22,6 +22,8 @@ body {
 header {
     /* border: 1px solid black; */
     margin: 20px;
+    /* background: rgb(55,46,225);
+    background: linear-gradient(183deg, rgba(55,46,225,1) 0%, rgba(124,124,227,1) 22%, rgba(72,175,197,1) 68%); */
 }
 
 nav {
@@ -172,4 +174,42 @@ nav li a {
 
 .btn-container {
     text-align: center;
+}
+
+.blog-list {
+    /* border: 1px solid black; */
+    padding: 5px;
+    width: 75%;
+    height: 170px;
+    position: relative;
+}
+
+.blog-list h3, p {
+    padding: 3px;
+}
+
+.blog-list span {
+    position: absolute;
+    bottom: 10%;
+    padding: 10px;
+}
+
+.blog-list img {
+    float: right;
+}
+
+@media screen and (max-width: 850px) {
+    .blog-list img {
+        display: none;
+    }
+
+    .main-body {
+        margin: -25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .blog-list p {
+        display: none;
+    }
 }
