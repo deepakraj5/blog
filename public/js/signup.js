@@ -1,3 +1,11 @@
+let preloader = document.querySelector('.preloader')
+
+window.addEventListener('load', handleOnLoad)
+
+function handleOnLoad () {
+    preloader.classList.add('disappear')
+}
+
 let profile = JSON.parse(localStorage.getItem('profile'))
 
 if (profile) {

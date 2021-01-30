@@ -3,6 +3,7 @@ const path = require('path')
 const hbs = require('hbs')
 const blogRoute = require('./routes/blog')
 const userRoute = require('./routes/user')
+const postRoute = require('./routes/post')
 require('dotenv').config()
 require('./db/mongoose')
 
@@ -24,6 +25,7 @@ app.use(express.json())
 
 app.use(blogRoute)
 app.use('/api/v1', userRoute)
+app.use('/api/v1', postRoute)
 
 app.listen(PORT, () => {
     console.log(`server upon port ${PORT}`)

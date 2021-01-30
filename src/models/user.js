@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const Post = require('./post')
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -14,6 +15,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String
     }
+})
+
+userSchema.virtual('posts', {
+    ref: 'Post',
+    localField: '_id',
+    foreignField: 'owner'
 })
 
 userSchema.pre('save', async function (next) {

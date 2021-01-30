@@ -9,6 +9,10 @@
 </head>
 <body>
 
+    <div class="preloader">
+        <img src="/images/preloader.gif" alt="preloader" />
+    </div>
+
     <div class="container">
 
         <div class="blog-container">
@@ -16,7 +20,50 @@
             {{>header}}
 
             <div class="main-body">
-                <p>New Post</p>
+                <div class="post-form-container">
+                    
+                    <form class="blog-form">
+                        <table cellSpacing="20">
+                            <tr>
+                                <td>Title</td>
+                                <td class="blog-input-container">
+                                    <textarea class="blog-input"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Subject</td>
+                                <td class="blog-input-container">
+                                    <textarea class="blog-input"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Blog</td>
+                                <td class="blog-input-container">
+                                    <textarea class="blog-input-body"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Youtube Link</td>
+                                <td class="blog-input-container">
+                                    <textarea class="blog-input"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Image</td>
+                                <td>
+                                    <input id="blog-image" type="file" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="btn-container">
+                                    <button class="post-blog-btn">Post the Blog</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+
+                </div>
             </div>
 
         </div>

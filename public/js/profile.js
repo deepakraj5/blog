@@ -8,20 +8,57 @@ if (!profile) {
     let aboutLink = document.getElementById('about')
 
     if(profile) {
-        signinLink.innerHTML = '<a href="/profile">Profile</a>'
-        signupLink.innerHTML = '<a id="signout" href="/signout">Signout</a>'
-        aboutLink.innerHTML = '<a href="/addpost">Add Post</a>'
-    }
 
-    if(document.getElementById('signout')) {
-        let signout = document.getElementById('signout')
+        let profileMethod = async (url, token) => {
+            let response = await fetch(url, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+        
+            return response.json()
+        }
 
-        signout.addEventListener('click', (e) => {
-            e.preventDefault()
+        let jwt_token = localStorage.getItem('jwt_token')
 
-            localStorage.removeItem('profile')
-            localStorage.removeItem('jwt_token')
-            window.location.replace('http://localhost:3000')
-        })
+        async function getProfile () {
+            let profileRes = await profileMethod('http://localhost:3000/api/v1/profile', jwt_token)
+            signupLink.innerHTML = '<a id="signout" href="/signout">Signout</a>'
+            signinLink.innerHTML = `<a href="/profile">${profileRes.profile.name}</a>`
+            aboutLink.innerHTML = '<a href="/addpost">Add Post</a>'
+
+            let name = document.getElementById('name')
+            let email = document.getElementById('email')
+            let phone = document.getElementById('phone')
+
+            name.innerHTML = `Name: ${profileRes.profile.name}`
+            email.innerHTML = `Email: ${profileRes.profile.email}`
+            phone.innerHTML = `Phone: ${profileRes.profile.phone}`
+
+            let preloader = document.querySelector('.preloader')
+
+            if(profileRes) {
+                handleOnLoad()
+            }
+
+            function handleOnLoad () {
+                preloader.classList.add('disappear')
+            }
+
+            if(document.getElementById('signout')) {
+                let signout = document.getElementById('signout')
+        
+                signout.addEventListener('click', (e) => {
+                    e.preventDefault()
+        
+                    localStorage.removeItem('profile')
+                    localStorage.removeItem('jwt_token')
+                    window.location.replace('http://localhost:3000')
+                })
+            }
+        } 
+
+        getProfile()
+
     }
 }
