@@ -20,4 +20,8 @@ route.get('/addpost', (req, res) => {
     res.render('addpost')
 })
 
+route.get('/blog', (req, res) => {
+    res.render('singlepost')
+})
+
 module.exports = route
