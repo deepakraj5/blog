@@ -1,11 +1,3 @@
-let preloader = document.querySelector('.preloader')
-
-window.addEventListener('load', handleOnLoad)
-
-function handleOnLoad () {
-    preloader.classList.add('disappear')
-}
-
 let profile = JSON.parse(localStorage.getItem('profile'))
 
 let signinLink = document.getElementById('signin')
@@ -17,6 +9,55 @@ if(profile) {
     signinLink.innerHTML = `<a href="/profile">${profile.name}</a>`
     aboutLink.innerHTML = '<a href="/addpost">Add Post</a>'
 }
+
+let getAllPost = async () => {
+
+    let allPostMethod = async (url) => {
+        let response = await fetch (url)
+        return response.json()
+    }
+
+    let imageBlobCreater = (data) => {
+        let arrayBufferView = new Uint8Array(data)
+        let blob = new Blob([ arrayBufferView ], { type: 'image/jpeg' })
+        let urlCreator = window.URL || window.webkitURL
+        let imageUrl = urlCreator.createObjectURL(blob)
+        return imageUrl
+    }
+
+    let postsResponse = await allPostMethod('http://localhost:3000/api/v1/allpost')
+    let posts = postsResponse.posts
+
+    for (let i = 0; i < posts.length; i ++) {
+        let buf = posts[i].images
+
+        let recentBlogs = document.querySelector('.recent-blogs')
+
+        let blogList = document.createElement('div')
+        blogList.classList.add('blog-list')
+
+        recentBlogs.appendChild(blogList)
+
+        let imageEle = document.createElement('img')
+        let titleEle = document.createElement('h3')
+        let subjectEle = document.createElement('p')
+
+        imageEle.src = imageBlobCreater(buf.data)
+        titleEle.innerHTML = posts[i].title
+        subjectEle.innerHTML = posts[i].subject
+        
+        blogList.appendChild(imageEle)
+        blogList.appendChild(titleEle)
+        blogList.appendChild(subjectEle)
+
+        blogList.addEventListener('click', () => alert(posts[i]._id))
+    }
+
+    let preloader = document.querySelector('.preloader')
+    preloader.classList.add('disappear')
+}
+
+getAllPost()
 
 if(document.getElementById('signout')) {
     let signout = document.getElementById('signout')

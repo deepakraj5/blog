@@ -28,6 +28,16 @@ route.get('/allpost', async (req, res) => {
     }
 })
 
+route.get('/singlepost', async (req, res) => {
+    try {
+        const postId = req.body.postId
+        const post = await Post.findOne({ postId })
+        res.send({ post })
+    } catch (e) {
+        res.status(500).send({ error: 'something went wrong' })
+    }
+})
+
 route.get('/mypost', auth, async (req, res) => {
     try {
         const myId = req.user._id
