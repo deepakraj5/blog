@@ -28,10 +28,10 @@ route.get('/allpost', async (req, res) => {
     }
 })
 
-route.get('/singlepost', async (req, res) => {
+route.get('/singlepost/:blogId', async (req, res) => {
     try {
-        const postId = req.body.postId
-        const post = await Post.findOne({ postId })
+        const postId = req.params.blogId
+        const post = await Post.findOne({ _id: postId })
         res.send({ post })
     } catch (e) {
         res.status(500).send({ error: 'something went wrong' })

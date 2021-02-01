@@ -50,7 +50,9 @@ let getAllPost = async () => {
         blogList.appendChild(titleEle)
         blogList.appendChild(subjectEle)
 
-        blogList.addEventListener('click', () => alert(posts[i]._id))
+        blogList.addEventListener('click', () => {
+            window.location.replace('http://localhost:3000/blog/' + posts[i]._id)
+        })
     }
 
     let preloader = document.querySelector('.preloader')

@@ -1,4 +1,5 @@
 const route = require('express').Router()
+const Post = require('../models/post')
 
 route.get('/', (req, res) => {
     res.render('index')
@@ -20,8 +21,20 @@ route.get('/addpost', (req, res) => {
     res.render('addpost')
 })
 
-route.get('/blog', (req, res) => {
-    res.render('singlepost')
+route.get('/blog/:blogId', async (req, res) => {
+    try {
+        const blogId = req.params.blogId
+        const blog = await Post.findOne({ _id: blogId })
+        if(blog) {
+            return res.render('singlepost')
+        } else {
+            throw new Error()
+        }
+    } catch (e) {
+        res.render('singlepost', {
+            message: `can't find the blog`
+        })
+    }
 })
 
 module.exports = route
