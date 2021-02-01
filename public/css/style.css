@@ -200,6 +200,23 @@ nav li a {
     height: 150px;
 }
 
+.single-post-container {
+    display: flex;
+    justify-content: center;
+}
+
+.single-post {
+    /* border: 1px solid black; */
+    margin: 20px;
+    padding: 4px;
+    width: 60%;
+    text-align: center;
+}
+
+.single-post h1 {
+    font-size: 50px;
+}
+
 @media screen and (max-width: 850px) {
     .blog-list img {
         display: none;
