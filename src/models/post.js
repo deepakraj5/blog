@@ -19,6 +19,8 @@ const postSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId
     }
+}, {
+    timestamps: true
 })
 
 const Post = mongoose.model('Post', postSchema)

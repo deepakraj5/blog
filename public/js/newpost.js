@@ -59,45 +59,66 @@ if (!profile) {
                 postBlogBtn.innerHTML = 'Posting the Blog...'
                 postBlogBtn.disabled = true
 
-                let jwt_token = localStorage.getItem('jwt_token')
-
-                let title = blogForm.elements[0].value
-                let subject = blogForm.elements[1].value
-                let body = blogForm.elements[2].value
-                let youtubeLink = blogForm.elements[3].value
-
-                let blogImage = document.getElementById('blog-image')
-                let image = blogImage.files[0]
-
-                let formData = new FormData()
-
-                formData.append('image', image)
-                formData.append('title', title)
-                formData.append('subject', subject)
-                formData.append('body', body)
-                formData.append('youtubeLink', youtubeLink)
-
-                let newPostMethod = async (url, token, data) => {
-                    let response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': 'Bearer ' + token
-                        },
-                        body: data
-                    })
-                
-                    return response.json()
+                let validation = false
+                let titleCheck = blogForm.elements[0].value
+                if(titleCheck.includes('-')) {
+                    validation = false
+                } else {
+                    blogForm.elements[0].classList.remove('wrong-input')
+                    validation = true
                 }
 
-                let response = await newPostMethod('http://localhost:3000/api/v1/newpost', jwt_token, formData)
+                if(validation) {
+                    let jwt_token = localStorage.getItem('jwt_token')
 
-                if (response.message === 'new post added') {
-                    window.location.replace('http://localhost:3000')
+                    let title = blogForm.elements[0].value
+                    let subject = blogForm.elements[1].value
+                    let body = blogForm.elements[2].value
+                    let youtubeLink = blogForm.elements[3].value
+
+                    let blogImage = document.getElementById('blog-image')
+                    let image = blogImage.files[0]
+
+                    let formData = new FormData()
+
+                    formData.append('image', image)
+                    formData.append('title', title)
+                    formData.append('subject', subject)
+                    formData.append('body', body)
+                    formData.append('youtubeLink', youtubeLink)
+
+                    let newPostMethod = async (url, token, data) => {
+                        let response = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            },
+                            body: data
+                        })
+                    
+                        return response.json()
+                    }
+
+                    let response = await newPostMethod('http://localhost:3000/api/v1/newpost', jwt_token, formData)
+
+                    if (response.message === 'new post added') {
+                        let titleError = document.getElementById('title-error')
+                        titleError.innerHTML = ''
+                        window.location.replace('http://localhost:3000')
+                    } else if (response.error === 'title already present') {
+                        let titleError = document.getElementById('title-error')
+                        titleError.innerHTML = 'Title Already taken'
+                        postBlogBtn.innerHTML = 'Post the Blog'
+                        postBlogBtn.disabled = false
+                    } else {
+                        postBlogBtn.innerHTML = 'Post the Blog'
+                        postBlogBtn.disabled = false
+                    }
                 } else {
+                    blogForm.elements[0].classList.add('wrong-input')
                     postBlogBtn.innerHTML = 'Post the Blog'
                     postBlogBtn.disabled = false
                 }
-
             })
 
         } 

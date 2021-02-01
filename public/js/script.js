@@ -50,8 +50,11 @@ let getAllPost = async () => {
         blogList.appendChild(titleEle)
         blogList.appendChild(subjectEle)
 
+        let title = posts[i].title
+        let searchOpt = title.split(' ').join('-')
+
         blogList.addEventListener('click', () => {
-            window.location.replace('http://localhost:3000/blog/' + posts[i]._id)
+            window.location.replace('http://localhost:3000/blog/' + searchOpt)
         })
     }
 
