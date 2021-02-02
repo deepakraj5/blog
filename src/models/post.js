@@ -7,10 +7,7 @@ const postSchema = new mongoose.Schema({
     subject: {
         type: String
     },
-    body: {
-        type: String
-    },
-    youtubeLink: {
+    blog: {
         type: String
     },
     images: {

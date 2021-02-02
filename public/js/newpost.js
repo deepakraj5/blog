@@ -22,6 +22,13 @@ if (!profile) {
         let jwt_token = localStorage.getItem('jwt_token')
 
         async function getProfile () {
+
+            let blogPostData = CKEDITOR.replace('blog-post-data')
+            let blogData
+            blogPostData.on('change', (e) => {
+                blogData = e.editor.getData()
+            })
+
             let profileRes = await profileMethod('http://localhost:3000/api/v1/profile', jwt_token)
             signupLink.innerHTML = '<a id="signout" href="/signout">Signout</a>'
             signinLink.innerHTML = `<a href="/profile">${profileRes.profile.name}</a>`
@@ -74,7 +81,6 @@ if (!profile) {
                     let title = blogForm.elements[0].value
                     let subject = blogForm.elements[1].value
                     let body = blogForm.elements[2].value
-                    let youtubeLink = blogForm.elements[3].value
 
                     let blogImage = document.getElementById('blog-image')
                     let image = blogImage.files[0]
@@ -84,8 +90,7 @@ if (!profile) {
                     formData.append('image', image)
                     formData.append('title', title)
                     formData.append('subject', subject)
-                    formData.append('body', body)
-                    formData.append('youtubeLink', youtubeLink)
+                    formData.append('blog', blogData)
 
                     let newPostMethod = async (url, token, data) => {
                         let response = await fetch(url, {

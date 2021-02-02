@@ -40,12 +40,10 @@ let start = async () => {
     let blogTitle = document.getElementById('blog-title')
     let blogSubject = document.getElementById('blog-subject')
     let blogBody = document.getElementById('blog-body')
-    let blogYoutube = document.getElementById('blog-youtube')
 
     blogTitle.innerHTML = blog.title
     blogSubject.innerHTML = blog.subject
-    blogBody.innerHTML = blog.body
-    blogYoutube.src = youtubeLinkCreater(blog.youtubeLink)
+    blogBody.innerHTML = blog.blog
     blogImage.src = imageBlobCreater(blog.images.data)
 
     let preloader = document.querySelector('.preloader')

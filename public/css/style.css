@@ -209,8 +209,12 @@ nav li a {
     /* border: 1px solid black; */
     margin: 20px;
     padding: 4px;
-    width: 60%;
-    text-align: center;
+    width: 80%;
+    /* text-align: center; */
+}
+
+.single-post div {
+    padding: 20px;
 }
 
 .single-post h1 {
