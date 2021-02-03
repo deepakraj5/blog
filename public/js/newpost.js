@@ -1,5 +1,12 @@
 let profile = JSON.parse(localStorage.getItem('profile'))
 
+let hamburger = document.querySelector('.hamburger')
+let navLink = document.querySelector('.nav-links')
+
+hamburger.addEventListener('click', () => {
+    navLink.classList.toggle('open')
+})
+
 if (!profile) {
     window.location.replace('http://localhost:3000')
 } else {

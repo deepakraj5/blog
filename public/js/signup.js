@@ -1,5 +1,12 @@
 let preloader = document.querySelector('.preloader')
 
+let hamburger = document.querySelector('.hamburger')
+let navLink = document.querySelector('.nav-links')
+
+hamburger.addEventListener('click', () => {
+    navLink.classList.toggle('open')
+})
+
 window.addEventListener('load', handleOnLoad)
 
 function handleOnLoad () {

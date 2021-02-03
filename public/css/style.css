@@ -34,7 +34,7 @@ nav {
     align-items: center;
     height: 100%;
     margin-left: auto;
-    width: 45%;
+    width: 60%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     /* background-color: coral; */
 }
@@ -235,4 +235,44 @@ nav li a {
     .blog-list p {
         display: none;
     }
+}
+
+@media screen and (max-width: 860px) {
+
+    .line {
+        width: 30px;
+        height: 3px;
+        margin: 5px;
+        background-color: black;
+    }
+
+    .nav-links {
+        position: relative;
+    }
+
+    .hamburger {
+        position: absolute;
+        z-index: 100;
+        cursor: pointer;
+        top: 2%;
+        right: 2%;
+    }
+
+    .nav-links {
+        position: fixed;
+        background-color: darkgray;
+        z-index: 99;
+        width: 100%;
+        margin: -70px;
+        flex-direction: column;
+        clip-path: circle(100px at 90% -20%);
+        -webkit-clip-path: circle(100px at 90% -20%);
+        transition: ease-in-out 2s;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1200px at 90% -20%);
+        -webkit-clip-path: circle(1200px at 90% -20%);
+    }
+
 }

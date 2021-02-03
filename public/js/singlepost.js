@@ -1,5 +1,12 @@
 let profile = JSON.parse(localStorage.getItem('profile'))
 
+let hamburger = document.querySelector('.hamburger')
+let navLink = document.querySelector('.nav-links')
+
+hamburger.addEventListener('click', () => {
+    navLink.classList.toggle('open')
+})
+
 let signinLink = document.getElementById('signin')
 let signupLink = document.getElementById('signup')
 let aboutLink = document.getElementById('about')
