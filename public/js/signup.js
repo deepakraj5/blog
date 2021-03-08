@@ -16,7 +16,7 @@ function handleOnLoad () {
 let profile = JSON.parse(localStorage.getItem('profile'))
 
 if (profile) {
-    window.location.replace('http://localhost:3000')
+    window.location.replace('http://13.126.18.96:3005')
 }
  
 let signupBtn = document.querySelector('.signup-btn')
@@ -68,10 +68,10 @@ signupBtn.addEventListener('click', async (e) => {
             signupDetails[key] = value
         }
     
-        let response = await postMethod('http://localhost:3000/api/v1/signup', signupDetails)
+        let response = await postMethod('http://13.126.18.96:3005/api/v1/signup', signupDetails)
     
         if(response.message === 'user created') {
-            window.location.replace('http://localhost:3000')
+            window.location.replace('http://13.126.18.96:3005')
         } else {
             signupBtn.disabled = false
             signupBtn.innerHTML = 'Signup'

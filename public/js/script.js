@@ -32,7 +32,7 @@ let getAllPost = async () => {
         return imageUrl
     }
 
-    let postsResponse = await allPostMethod('http://localhost:3000/api/v1/allpost')
+    let postsResponse = await allPostMethod('http://13.126.18.96:3005/api/v1/allpost')
     let posts = postsResponse.posts
 
     for (let i = 0; i < posts.length; i ++) {
@@ -61,7 +61,7 @@ let getAllPost = async () => {
         let searchOpt = title.split(' ').join('-')
 
         blogList.addEventListener('click', () => {
-            window.location.replace('http://localhost:3000/blog/' + searchOpt)
+            window.location.replace('http://13.126.18.96:3005/blog/' + searchOpt)
         })
     }
 
@@ -79,6 +79,6 @@ if(document.getElementById('signout')) {
 
         localStorage.removeItem('profile')
         localStorage.removeItem('jwt_token')
-        window.location.replace('http://localhost:3000')
+        window.location.replace('http://13.126.18.96:3005')
     })
 }
