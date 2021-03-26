@@ -17,7 +17,7 @@ let profile = JSON.parse(localStorage.getItem('profile'))
 
 if (profile) {
     console.log(profile)
-    window.location.replace('http://13.126.18.96:3005')
+    window.location.replace('http://34.72.18.223:3008')
 }
 
 let signinForm = document.getElementById('signin-form')
@@ -58,7 +58,7 @@ signinBtn.addEventListener('click', async (e) => {
                 signinDetails[key] = value
             }
     
-            let response = await postMethod('http://13.126.18.96:3005/api/v1/signin', signinDetails)
+            let response = await postMethod('http://34.72.18.223:3008/api/v1/signin', signinDetails)
     
             if (response.token) {
     
@@ -66,11 +66,11 @@ signinBtn.addEventListener('click', async (e) => {
                 wrongEmail.innerHTML = ''
                 wrongPassword.innerHTML = ''
     
-                let profile = await profileMethod('http://13.126.18.96:3005/api/v1/profile', response.token)
+                let profile = await profileMethod('http://34.72.18.223:3008/api/v1/profile', response.token)
                 
                 localStorage.setItem('profile', JSON.stringify(profile.profile))
 
-                window.location.replace('http://13.126.18.96:3005')
+                window.location.replace('http://34.72.18.223:3008')
     
             } else {
                 signinForm.elements[0].classList.add('wrong-input')

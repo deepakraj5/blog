@@ -8,7 +8,7 @@ hamburger.addEventListener('click', () => {
 })
 
 if (!profile) {
-    window.location.replace('http://13.126.18.96:3005')
+    window.location.replace('http://34.72.18.223:3008')
 } else {
     let signinLink = document.getElementById('signin')
     let signupLink = document.getElementById('signup')
@@ -36,7 +36,7 @@ if (!profile) {
                 blogData = e.editor.getData()
             })
 
-            let profileRes = await profileMethod('http://13.126.18.96:3005/api/v1/profile', jwt_token)
+            let profileRes = await profileMethod('http://34.72.18.223:3008/api/v1/profile', jwt_token)
             signupLink.innerHTML = '<a id="signout" href="/signout">Signout</a>'
             signinLink.innerHTML = `<a href="/profile">${profileRes.profile.name}</a>`
             aboutLink.innerHTML = '<a href="/addpost">Add Post</a>'
@@ -59,7 +59,7 @@ if (!profile) {
         
                     localStorage.removeItem('profile')
                     localStorage.removeItem('jwt_token')
-                    window.location.replace('http://13.126.18.96:3005')
+                    window.location.replace('http://34.72.18.223:3008')
                 })
             }
 
@@ -111,12 +111,12 @@ if (!profile) {
                         return response.json()
                     }
 
-                    let response = await newPostMethod('http://13.126.18.96:3005/api/v1/newpost', jwt_token, formData)
+                    let response = await newPostMethod('http://34.72.18.223:3008/api/v1/newpost', jwt_token, formData)
 
                     if (response.message === 'new post added') {
                         let titleError = document.getElementById('title-error')
                         titleError.innerHTML = ''
-                        window.location.replace('http://13.126.18.96:3005')
+                        window.location.replace('http://34.72.18.223:3008')
                     } else if (response.error === 'title already present') {
                         let titleError = document.getElementById('title-error')
                         titleError.innerHTML = 'Title Already taken'
