@@ -40,7 +40,7 @@ let start = async () => {
         return `https://www.youtube.com/embed/${data}`
     }
 
-    let blogObj = await getSinglePostMethod('http://34.72.18.223:3008/api/v1/singlepost', blogId)
+    let blogObj = await getSinglePostMethod('https://blog.deepakdev.live/api/v1/singlepost', blogId)
     let blog = blogObj.post
 
     let blogImage = document.getElementById('blog-img')
@@ -68,6 +68,6 @@ if(document.getElementById('signout')) {
 
         localStorage.removeItem('profile')
         localStorage.removeItem('jwt_token')
-        window.location.replace('http://34.72.18.223:3008')
+        window.location.replace('https://blog.deepakdev.live')
     })
 }

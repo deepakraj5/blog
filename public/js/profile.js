@@ -8,7 +8,7 @@ hamburger.addEventListener('click', () => {
 })
 
 if (!profile) {
-    window.location.replace('http://34.72.18.223:3008')
+    window.location.replace('https://blog.deepakdev.live')
 } else {
     let signinLink = document.getElementById('signin')
     let signupLink = document.getElementById('signup')
@@ -29,7 +29,7 @@ if (!profile) {
         let jwt_token = localStorage.getItem('jwt_token')
 
         async function getProfile () {
-            let profileRes = await profileMethod('http://34.72.18.223:3008/api/v1/profile', jwt_token)
+            let profileRes = await profileMethod('https://blog.deepakdev.live/api/v1/profile', jwt_token)
             signupLink.innerHTML = '<a id="signout" href="/signout">Signout</a>'
             signinLink.innerHTML = `<a href="/profile">${profileRes.profile.name}</a>`
             aboutLink.innerHTML = '<a href="/addpost">Add Post</a>'
@@ -60,7 +60,7 @@ if (!profile) {
         
                     localStorage.removeItem('profile')
                     localStorage.removeItem('jwt_token')
-                    window.location.replace('http://34.72.18.223:3008')
+                    window.location.replace('https://blog.deepakdev.live')
                 })
             }
         } 
