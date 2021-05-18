@@ -32,7 +32,7 @@ let getAllPost = async () => {
         return imageUrl
     }
 
-    let postsResponse = await allPostMethod('http://40.76.74.157/api/v1/allpost')
+    let postsResponse = await allPostMethod('https://blog.deepakdev.live/api/v1/allpost')
     let posts = postsResponse.posts
 
     for (let i = 0; i < posts.length; i ++) {
@@ -61,7 +61,7 @@ let getAllPost = async () => {
         let searchOpt = title.split(' ').join('-')
 
         blogList.addEventListener('click', () => {
-            window.location.replace('http://40.76.74.157/blog/' + searchOpt)
+            window.location.replace('https://blog.deepakdev.live/blog/' + searchOpt)
         })
     }
 
@@ -79,6 +79,6 @@ if(document.getElementById('signout')) {
 
         localStorage.removeItem('profile')
         localStorage.removeItem('jwt_token')
-        window.location.replace('http://40.76.74.157')
+        window.location.replace('https://blog.deepakdev.live')
     })
 }
