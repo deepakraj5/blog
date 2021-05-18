@@ -16,7 +16,7 @@ function handleOnLoad () {
 let profile = JSON.parse(localStorage.getItem('profile'))
 
 if (profile) {
-    window.location.replace('https://blog.deepakdev.live')
+    window.location.replace('http://40.76.74.157')
 }
  
 let signupBtn = document.querySelector('.signup-btn')
@@ -68,10 +68,10 @@ signupBtn.addEventListener('click', async (e) => {
             signupDetails[key] = value
         }
     
-        let response = await postMethod('https://blog.deepakdev.live/api/v1/signup', signupDetails)
+        let response = await postMethod('http://40.76.74.157/api/v1/signup', signupDetails)
     
         if(response.message === 'user created') {
-            window.location.replace('https://blog.deepakdev.live')
+            window.location.replace('http://40.76.74.157')
         } else {
             signupBtn.disabled = false
             signupBtn.innerHTML = 'Signup'

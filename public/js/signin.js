@@ -17,7 +17,7 @@ let profile = JSON.parse(localStorage.getItem('profile'))
 
 if (profile) {
     console.log(profile)
-    window.location.replace('https://blog.deepakdev.live')
+    window.location.replace('http://40.76.74.157')
 }
 
 let signinForm = document.getElementById('signin-form')
@@ -58,7 +58,7 @@ signinBtn.addEventListener('click', async (e) => {
                 signinDetails[key] = value
             }
     
-            let response = await postMethod('https://blog.deepakdev.live/api/v1/signin', signinDetails)
+            let response = await postMethod('http://40.76.74.157/api/v1/signin', signinDetails)
     
             if (response.token) {
     
@@ -66,11 +66,11 @@ signinBtn.addEventListener('click', async (e) => {
                 wrongEmail.innerHTML = ''
                 wrongPassword.innerHTML = ''
     
-                let profile = await profileMethod('https://blog.deepakdev.live/api/v1/profile', response.token)
+                let profile = await profileMethod('http://40.76.74.157/api/v1/profile', response.token)
                 
                 localStorage.setItem('profile', JSON.stringify(profile.profile))
 
-                window.location.replace('https://blog.deepakdev.live')
+                window.location.replace('http://40.76.74.157')
     
             } else {
                 signinForm.elements[0].classList.add('wrong-input')
